@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You are Special</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Sacramento&display=swap');
+
+        /* --- Global Styles --- */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            /* Subtle dot grid pattern */
+            background-image: radial-gradient(#333 1px, transparent 1px);
+            background-size: 20px 20px;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 400px;
+            position: relative;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        h1 {
+            font-family: 'Sacramento', cursive;
+            font-size: 2.5rem;
+            color: #ffb6c1;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1rem;
+            color: #ddd;
+            line-height: 1.5;
+        }
+
+        /* --- Buttons --- */
+        .btn {
+            background: linear-gradient(45deg, #ff69b4, #ff1493);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.4);
+            transition: transform 0.2s;
+        }
+
+        .btn:active {
+            transform: scale(0.95);
+        }
+
+        /* --- Screen 1: Intro --- */
+        .avatar-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: #fff;
+            margin: 0 auto 20px;
+            border: 4px solid #ff69b4;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 20px rgba(255, 105, 180, 0.6);
+        }
+        
+        .avatar-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* --- Screen 2: Progress --- */
+        .progress-container {
+            width: 100%;
+            background-color: #333;
+            border-radius: 15px;
+            margin: 20px 0;
+            height: 25px;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid #555;
+        }
+
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #ff69b4, #ff1493);
+            transition: width 0.1s linear;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 10px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .warning-text {
+            color: #ffeb3b;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0.5; }
+        }
+
+        /* --- Screen 3: Compliments --- */
+        .heart-icon-big {
+            font-size: 4rem;
+            color: #ff69b4;
+            animation: beat 1s infinite;
+        }
+
+        @keyframes beat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .compliment-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .compliment-item {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid #ff69b4;
+            border-radius: 10px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            min-height: 20px;
+        }
+
+        .compliment-text {
+            display: none;
+            font-size: 0.95rem;
+        }
+        
+        .compliment-cover {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+        }
+
+        /* --- Screen 4 & 5: Note --- */
+        .envelope-area {
+            background: #ffc0cb;
+            color: #333;
+            border-radius: 15px;
+            padding: 40px 20px;
+            position: relative;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(255, 192, 203, 0.5);
+            margin-top: 30px;
+        }
+
+        .heart-seal {
+            font-size: 3rem;
+            color: #ff1493;
+            animation: float 2s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .letter-content {
+            background: #fff0f5;
+            color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: left;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-top: 20px;
+            border: 2px dashed #ff69b4;
+        }
+
+        /* --- Screen 6: Final --- */
+        .final-msg {
+            font-size: 1.5rem;
+            color: #ff69b4;
+            font-family: 'Sacramento', cursive;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div id="screen-intro">
+            <div class="avatar-circle">
+                <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3hveGV4cWN0cW15cnI4eXJ5eXJ5eXJ5eXJ5eXJ5eXJ5eXJ5eSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/MDJ9IbxxvDUQM/giphy.gif" alt="Cute Cat">
+            </div>
+            <h1>Hey Beautiful</h1>
+            <p>Do you even know how cute you are?</p>
+            <button class="btn" onclick="startExperience()">Open My Heart 💖</button>
+        </div>
+
+        <div id="screen-progress" class="hidden">
+            <h2>Measuring your cuteness...</h2>
+            <div class="progress-container">
+                <div class="progress-bar" id="progress-fill">0%</div>
+            </div>
+            <p id="progress-text">Calculating...</p>
+            <p id="warning-msg" class="warning-text hidden">⚠️ WARNING: TOO CUTE TO HANDLE</p>
+        </div>
+
+        <div id="screen-compliments" class="hidden">
+            <div class="heart-icon-big">💖</div>
+            <h1>Just for you</h1>
+            <p>Tap each one to reveal</p>
+            
+            <div class="compliment-list">
+                <div class="compliment-item" onclick="reveal(this)">
+                    <div class="compliment-cover">❤️</div>
+                    <div class="compliment-text">You look adorable</div>
+                </div>
+                <div class="compliment-item" onclick="reveal(this)">
+                    <div class="compliment-cover">❤️</div>
+                    <div class="compliment-text">You have the sweetest vibe</div>
+                </div>
+                <div class="compliment-item" onclick="reveal(this)">
+                    <div class="compliment-cover">❤️</div>
+                    <div class="compliment-text">You make things feel lighter</div>
+                </div>
+                <div class="compliment-item" onclick="reveal(this)">
+                    <div class="compliment-cover">❤️</div>
+                    <div class="compliment-text">You are naturally charming</div>
+                </div>
+            </div>
+
+            <button class="btn" id="next-btn" onclick="goToNote()" style="display:none; margin: 20px auto;">See more ➜</button>
+        </div>
+
+        <div id="screen-envelope" class="hidden">
+            <h1>A little note for you</h1>
+            <div class="envelope-area" onclick="openLetter()">
+                <div class="heart-seal">💌</div>
+                <p style="color:#555; margin-top:10px;">Tap to open</p>
+            </div>
+        </div>
+
+        <div id="screen-letter" class="hidden">
+            <div class="heart-icon-big" style="font-size: 3rem;">💗</div>
+            <div class="letter-content">
+                <p><strong>I just wanted to tell you something...</strong></p>
+                <p>You really are special in a way that's hard to explain. There's a softness in the way you talk, a sweetness in the way you smile, and something genuine about you that just feels good to be around.</p>
+                <p>You don't try to be anything extra, you're just you, and that's what makes you so lovely.</p>
+            </div>
+            <button class="btn" onclick="goToFinal()">One more thing ➜</button>
+        </div>
+
+        <div id="screen-final" class="hidden">
+            <div class="avatar-circle">
+                <img src="https://t3.ftcdn.net/jpg/12/69/26/98/360_F_1269269808_6SWglWC6Uo3NvnoiMbexfKtgQx07yQbP.jpg" alt="Hugging">
+            </div>
+            <h1 class="final-msg">You'll always be special to me</h1>
+        </div>
+
+    </div>
+
+    <script>
+        let revealedCount = 0;
+
+        function startExperience() {
+            document.getElementById('screen-intro').classList.add('hidden');
+            document.getElementById('screen-progress').classList.remove('hidden');
+            runProgressBar();
+        }
+
+        function runProgressBar() {
+            let elem = document.getElementById("progress-fill");
+            let text = document.getElementById("progress-text");
+            let warning = document.getElementById("warning-msg");
+            let width = 0;
+            
+            let id = setInterval(frame, 40); // Speed of bar
+
+            function frame() {
+                if (width >= 120) {
+                    clearInterval(id);
+                    setTimeout(() => {
+                        document.getElementById('screen-progress').classList.add('hidden');
+                        document.getElementById('screen-compliments').classList.remove('hidden');
+                    }, 1500);
+                } else {
+                    width++;
+                    elem.style.width = width + '%';
+                    elem.innerHTML = width + '%';
+                    
+                    if(width === 36) text.innerHTML = "Calculating cuteness...";
+                    if(width === 70) text.innerHTML = "Analysis: Off the charts!";
+                    if(width === 100) {
+                        elem.style.backgroundColor = "red"; 
+                        warning.classList.remove('hidden');
+                    }
+                }
+            }
+        }
+
+        function reveal(element) {
+            const cover = element.querySelector('.compliment-cover');
+            const text = element.querySelector('.compliment-text');
+
+            if (cover.style.display !== 'none') {
+                cover.style.display = 'none';
+                text.style.display = 'block';
+                revealedCount++;
+                
+                // Show "See more" button after all 4 are revealed
+                if(revealedCount === 4) {
+                    document.getElementById('next-btn').style.display = 'block';
+                }
+            }
+        }
+
+        function goToNote() {
+            document.getElementById('screen-compliments').classList.add('hidden');
+            document.getElementById('screen-envelope').classList.remove('hidden');
+        }
+
+        function openLetter() {
+            document.getElementById('screen-envelope').classList.add('hidden');
+            document.getElementById('screen-letter').classList.remove('hidden');
+        }
+
+        function goToFinal() {
+            document.getElementById('screen-letter').classList.add('hidden');
+            document.getElementById('screen-final').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
